@@ -1,1 +1,5 @@
-<p>user-list works!</p>
+@for (user of userList; track user.id) {
+    <p>{{user.name}} | {{user.age}} years old</p>
+}@empty {
+    <p>There are no users.</p>
+}

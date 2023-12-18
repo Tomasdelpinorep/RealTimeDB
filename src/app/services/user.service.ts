@@ -3,9 +3,12 @@ import {
   Firestore,
   addDoc,
   collection,
+  collectionData,
   getDocs,
   query,
 } from '@angular/fire/firestore';
+import { User } from 'firebase/auth';
+import { Observable } from 'rxjs';
 
 const COLLECTION_USERS = 'users';
 
@@ -23,5 +26,8 @@ export class UserService {
     console.log('Document written with ID: ', docRef.id);
   }
 
-  getUsers() {}
+  getUsers(){
+    const userRef = collection(this.firestore, COLLECTION_USERS);
+    return collectionData(userRef, {idField: 'id'}) as Observable<any[]>;
+  }
 }
